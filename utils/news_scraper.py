@@ -3,13 +3,19 @@ News scraper module for the pharma CI platform.
 Fetches and processes pharmaceutical news from various sources.
 """
 import requests
-import trafilatura
 import pandas as pd
 import time
 import os
 import hashlib
 from datetime import datetime, timedelta
 from utils.text_processing import summarize_text, analyze_sentiment
+
+# Try to import trafilatura
+try:
+    import trafilatura
+    HAS_TRAFILATURA = True
+except ImportError:
+    HAS_TRAFILATURA = False
 
 # Cache directory
 CACHE_DIR = ".cache"

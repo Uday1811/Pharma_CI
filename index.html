@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma CI Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 40px;
+            max-width: 600px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+        
+        .icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+        
+        p {
+            color: #7f8c8d;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 16px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 10px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+        
+        .info-box {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: left;
+            border-radius: 5px;
+        }
+        
+        .info-box h3 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box li {
+            color: #555;
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .info-box li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .github-link {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .github-link a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .github-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">💊</div>
+        <h1>Pharma CI Platform</h1>
+        <p>A comprehensive pharmaceutical competitive intelligence monitoring platform built with Streamlit.</p>
+        
+        <div class="info-box">
+            <h3>🚀 Key Features</h3>
+            <ul>
+                <li>Real-time Dashboard with Industry Metrics</li>
+                <li>Competitor Pipeline Tracking</li>
+                <li>News Monitoring & Sentiment Analysis</li>
+                <li>Key Opinion Leader (KOL) Insights</li>
+                <li>Interactive Data Visualizations</li>
+            </ul>
+        </div>
+        
+        <p style="color: #e74c3c; font-weight: 600;">
+            ⚠️ Note: Streamlit apps require a Python runtime and WebSocket support, which Vercel doesn't fully support.
+        </p>
+        
+        <p>
+            For the best experience, please deploy this app on <strong>Streamlit Community Cloud</strong> (free and optimized for Streamlit apps).
+        </p>
+        
+        <div>
+            <a href="https://share.streamlit.io/" class="btn" target="_blank">
+                Deploy on Streamlit Cloud
+            </a>
+            <a href="https://github.com/Uday1811/Pharma_CI" class="btn btn-secondary" target="_blank">
+                View on GitHub
+            </a>
+        </div>
+        
+        <div class="info-box" style="margin-top: 30px;">
+            <h3>📋 Quick Deploy Steps</h3>
+            <ul>
+                <li>Go to share.streamlit.io</li>
+                <li>Sign in with GitHub</li>
+                <li>Select repository: Uday1811/Pharma_CI</li>
+                <li>Main file: app.py</li>
+                <li>Click Deploy!</li>
+            </ul>
+        </div>
+        
+        <div class="github-link">
+            <p>
+                📦 Source Code: <a href="https://github.com/Uday1811/Pharma_CI" target="_blank">github.com/Uday1811/Pharma_CI</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
