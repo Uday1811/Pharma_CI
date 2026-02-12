@@ -353,7 +353,7 @@ def create_recent_activity_timeline(pipeline_data, news_data, max_items=10):
 
         # Add date on the left side
         fig.add_annotation(
-            x=0.3,
+            x=0.2,
             y=y_pos,
             text=f"<b>{event['date']}</b>",
             showarrow=False,
@@ -401,7 +401,7 @@ def create_recent_activity_timeline(pipeline_data, news_data, max_items=10):
         margin=dict(l=20, r=20, t=60, b=20),
         xaxis=dict(
             visible=False, 
-            range=[0, 4],
+            range=[-0.5, 4],
             fixedrange=True
         ),
         yaxis=dict(
