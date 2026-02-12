@@ -234,28 +234,38 @@ def render_news_monitor():
         # Extract all entities from news
         all_entities = {}
         for article in news_data:
-            if 'content' in article:
-                entities = extract_drug_entities(article['content'])
-                
-                # Merge entities by type
-                for entity_type, values in entities.items():
-                    if entity_type not in all_entities:
-                        all_entities[entity_type] = {}
+            if 'content' in article and article['content']:
+                try:
+                    entities = extract_drug_entities(article['content'])
                     
-                    for value in values:
-                        if value not in all_entities[entity_type]:
-                            all_entities[entity_type][value] = 1
-                        else:
-                            all_entities[entity_type][value] += 1
+                    # Merge entities by type
+                    for entity_type, values in entities.items():
+                        if not values:  # Skip empty lists
+                            continue
+                            
+                        if entity_type not in all_entities:
+                            all_entities[entity_type] = {}
+                        
+                        for value in values:
+                            if value and value.strip():  # Skip empty or whitespace-only values
+                                if value not in all_entities[entity_type]:
+                                    all_entities[entity_type][value] = 1
+                                else:
+                                    all_entities[entity_type][value] += 1
+                except Exception as e:
+                    # Skip articles that cause errors during entity extraction
+                    continue
         
         # Display top entities by type
         entity_types = ['DRUG', 'ORG', 'PERSON', 'GPE']  # GPE are geopolitical entities (countries, cities)
         
-        # Filter entity types that have data
-        available_entity_types = [t for t in entity_types if t in all_entities and all_entities[t]]
+        # Filter entity types that have data (non-empty dictionaries)
+        available_entity_types = [t for t in entity_types if t in all_entities and all_entities[t] and len(all_entities[t]) > 0]
         
-        if available_entity_types:
-            topics_cols = st.columns(len(available_entity_types))
+        if available_entity_types and len(available_entity_types) > 0:
+            # Ensure we have at least 1 column
+            num_cols = max(1, len(available_entity_types))
+            topics_cols = st.columns(num_cols)
             
             col_idx = 0
             for entity_type in available_entity_types:
