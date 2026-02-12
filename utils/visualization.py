@@ -351,15 +351,23 @@ def create_recent_activity_timeline(pipeline_data, news_data, max_items=10):
             hoverinfo='skip'
         ))
 
-        # Add date on the left side
+        # Add date on the left side with better formatting
+        # Convert date to more readable format
+        try:
+            from datetime import datetime
+            date_obj = datetime.strptime(event['date'], '%Y-%m-%d')
+            formatted_date = date_obj.strftime('%b %d, %Y')  # e.g., "Feb 12, 2026"
+        except:
+            formatted_date = event['date']
+        
         fig.add_annotation(
-            x=0.2,
+            x=0.1,
             y=y_pos,
-            text=f"<b>{event['date']}</b>",
+            text=f"<b>{formatted_date}</b>",
             showarrow=False,
             xanchor='right',
             yanchor='middle',
-            font=dict(size=11, color='#7f8c8d', family='Arial'),
+            font=dict(size=10, color='#7f8c8d', family='Arial'),
             bgcolor='rgba(255, 255, 255, 0.9)',
             borderpad=4
         )
@@ -398,10 +406,10 @@ def create_recent_activity_timeline(pipeline_data, news_data, max_items=10):
             y=0.98
         ),
         height=max(450, len(events) * 100),  # Dynamic height based on items
-        margin=dict(l=20, r=20, t=60, b=20),
+        margin=dict(l=120, r=20, t=60, b=20),  # Increased left margin for dates
         xaxis=dict(
             visible=False, 
-            range=[-0.5, 4],
+            range=[-1, 4],  # Extended left range for date display
             fixedrange=True
         ),
         yaxis=dict(
