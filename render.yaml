@@ -2,7 +2,7 @@ services:
   - type: web
     name: pharma-ci-platform
     env: python
-    buildCommand: pip install -r requirements.txt
+    buildCommand: pip install -r requirements.txt && python download_models.py
     startCommand: streamlit run app.py --server.port=$PORT --server.address=0.0.0.0 --server.headless=true
     envVars:
       - key: PYTHON_VERSION
