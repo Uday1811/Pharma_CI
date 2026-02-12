@@ -251,11 +251,14 @@ def render_news_monitor():
         # Display top entities by type
         entity_types = ['DRUG', 'ORG', 'PERSON', 'GPE']  # GPE are geopolitical entities (countries, cities)
         
-        topics_cols = st.columns(len([t for t in entity_types if t in all_entities]))
+        # Filter entity types that have data
+        available_entity_types = [t for t in entity_types if t in all_entities and all_entities[t]]
         
-        col_idx = 0
-        for entity_type in entity_types:
-            if entity_type in all_entities and all_entities[entity_type]:
+        if available_entity_types:
+            topics_cols = st.columns(len(available_entity_types))
+            
+            col_idx = 0
+            for entity_type in available_entity_types:
                 with topics_cols[col_idx]:
                     # Display entity type header
                     type_labels = {
@@ -273,5 +276,7 @@ def render_news_monitor():
                     # Display top 10 entities
                     for entity, count in sorted_entities[:10]:
                         st.markdown(f"{entity} ({count})")
-                
-                col_idx += 1
+                    
+                    col_idx += 1
+        else:
+            st.info("No topic trends available from current news articles.")
