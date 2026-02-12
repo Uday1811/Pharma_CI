@@ -8,13 +8,30 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, relationship
 import datetime
 
+# Try to load .env file if it exists
+try:
+    from pathlib import Path
+    env_path = Path('.env')
+    if env_path.exists():
+        with open(env_path) as f:
+            for line in f:
+                line = line.strip()
+                if line and not line.startswith('#') and '=' in line:
+                    key, value = line.split('=', 1)
+                    os.environ.setdefault(key.strip(), value.strip())
+except Exception as e:
+    pass  # Silently fail if .env doesn't exist
+
 # Get the database URL from environment variable
 DATABASE_URL = os.environ.get('DATABASE_URL')
 
 # Fallback to SQLite for local development if DATABASE_URL is not set
 if not DATABASE_URL:
     DATABASE_URL = 'sqlite:///pharma_ci.db'
-    print(f"DATABASE_URL not set, using SQLite: {DATABASE_URL}")
+    print(f"⚠️  DATABASE_URL not set, using SQLite: {DATABASE_URL}")
+    print(f"⚠️  For PostgreSQL, run: python setup_postgres.py")
+else:
+    print(f"✓ Using database: {DATABASE_URL.split('@')[0]}@***")
 
 # Create the SQLAlchemy engine
 engine = create_engine(DATABASE_URL)
